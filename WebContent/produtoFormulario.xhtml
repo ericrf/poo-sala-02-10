@@ -1,0 +1,75 @@
+<ui:composition template="includes/estrutura.xhtml"
+	  xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+	<ui:define name="corpo">   
+	
+		<h1>Produto</h1>
+		<p:messages id="messages"/>   
+	
+		<h:form>
+			<f:validateBean>
+			<p:tabView>  
+			    <p:tab title="Dados Gerais">  		
+					<h:panelGrid columns="2" style="margin-bottom:10px">
+						<h:outputLabel for="nome" value="Nome: *" />  
+						<p:inputText id="nome" value="#{produtoFormController.produto.nome}" size="60">
+							<p:message for="nome" />
+						</p:inputText>
+						
+						<h:outputLabel for="marca" value="Marca:" />  
+						<p:inputText id="marca" value="#{produtoFormController.produto.marca}" size="60"/>  
+						
+						<h:outputLabel for="descricao" value="Descricao:" />  
+						<p:inputTextarea id="descricao" value="#{produtoFormController.produto.descricao}" rows="5" cols="60"/>
+	
+	
+						<h:outputLabel for="categoria" value="Categoria:" />
+				        <p:selectOneMenu id="categoria" value="#{produtoFormController.produto.categoria}" 
+				        		converter="modelConverter">
+				            <f:selectItem itemLabel="Selecione" itemValue="" />  
+				            <f:selectItems value="#{produtoFormController.categorias}" 
+				            	var="categoria" itemLabel="#{categoria.nome}" itemValue="#{categoria}"/>
+				        </p:selectOneMenu>
+						
+						
+						<h:outputLabel for="cor" value="Cor:" />  
+						<p:colorPicker id="cor" value="#{produtoFormController.produto.cor}" widgetVar="picker"/> 
+						
+						<h:outputLabel for="data" value="Data:" />  
+						<p:calendar id="data" value="#{produtoFormController.produto.data}"  
+									pattern="dd/MM/yyyy" showOn="button" >
+									<p:message for="data" />
+									</p:calendar>
+					</h:panelGrid>
+				</p:tab>
+				<p:tab title="Endereco">
+					<h:panelGrid columns="2" style="margin-bottom:10px">
+						<h:outputLabel for="rua" value="Rua: *" />  
+						<p:inputText id="rua" value="#{produtoFormController.produto.endereco.rua}" size="60"/>
+						
+						<h:outputLabel for="bairro" value="Bairro:" />  
+						<p:inputText id="bairro" value="#{produtoFormController.produto.endereco.bairro}" size="60"/>  
+	
+					</h:panelGrid>			
+				</p:tab>
+				<p:tab title="Palavras-chave">
+			        <p:pickList id="palavras" value="#{produtoFormController.produtoPalavrasChave}"  
+				                    var="palavra" iconOnly="true"
+				                    itemValue="#{palavra}" converter="modelConverter"
+				                    itemLabel="#{palavra.nome}">  
+				        <f:facet name="sourceCaption">Disponivel</f:facet>  
+				        <f:facet name="targetCaption">Selecionado</f:facet>  
+			    	</p:pickList>
+				</p:tab>			
+			</p:tabView>			
+			<p:commandButton action="#{produtoFormController.salvar}" value="Salvar" ajax="false"/>
+			</f:validateBean>
+		</h:form>	
+
+	</ui:define>
+</ui:composition>

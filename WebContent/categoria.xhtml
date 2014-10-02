@@ -1,0 +1,38 @@
+<ui:composition template="includes/estrutura.xhtml"
+	  xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+	<ui:define name="corpo">      
+
+		<h1>Pagina de Categorias!</h1>
+		
+		<h:form>
+			<p:button outcome="categoriaFormulario.xhtml" value="Nova Categoria" /> 
+		</h:form>
+		
+		<h:form id="frmTabela">
+			<p:dataTable id="tabela" value="#{categoriaListaController.models}" var="categoria">
+				<p:column>
+					<f:facet name="header">Nome</f:facet>
+					#{categoria.nome}  
+			    </p:column>
+				<p:column style="width: 80px;">
+					<f:facet name="header">Ações</f:facet>
+					<p:button outcome="categoriaFormulario.xhtml" icon="ui-icon-pencil" title="Editar Categoria">
+						<f:param name="id" value="#{categoria.id}" />
+					</p:button>
+					<p:spacer width="10" />
+					<p:commandButton onclick="return confirm('Tem certeza que deseja excluir?')" 
+						icon="ui-icon-trash" title="Excluir Categoria" ajax="true" update=":frmTabela" action="#{categoriaListaController.excluir}">
+						<f:setPropertyActionListener target="#{categoriaListaController.id}" value="#{categoria.id}"/>
+					</p:commandButton>
+			    </p:column>				    
+			</p:dataTable>
+		</h:form>
+		
+	</ui:define>
+</ui:composition>
