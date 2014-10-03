@@ -3,6 +3,7 @@ package edu.fae.model;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -14,7 +15,7 @@ public class CarrinhoCompra implements Model{
 	@GeneratedValue
 	private Long id;
 	
-	@OneToMany(cascade=CascadeType.PERSIST)
+	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
 	private List<ItemCarrinho> itens;
 	
 	public double getValorTotal(){
