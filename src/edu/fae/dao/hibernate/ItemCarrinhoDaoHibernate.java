@@ -12,7 +12,7 @@ public class ItemCarrinhoDaoHibernate extends AbstractDaoHibernate<ItemCarrinho>
 
 	@Override
 	protected String getModelClassName() {
-		return "Categoria";
+		return "ItemCarrinho";
 	}
 
 }
