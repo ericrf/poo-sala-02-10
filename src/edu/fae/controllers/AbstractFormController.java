@@ -6,10 +6,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import edu.fae.dao.CategoriaDao;
 import edu.fae.dao.Dao;
-import edu.fae.dao.DaoFactory;
-import edu.fae.model.Categoria;
 import edu.fae.model.Model;
 
 @ViewScoped

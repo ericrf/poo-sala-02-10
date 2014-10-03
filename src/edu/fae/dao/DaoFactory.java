@@ -1,6 +1,8 @@
 package edu.fae.dao;
 
+import edu.fae.dao.hibernate.CarrinhoCompraDaoHibernate;
 import edu.fae.dao.hibernate.CategoriaDaoHibernate;
+import edu.fae.dao.hibernate.ItemCarrinhoDaoHibernate;
 import edu.fae.dao.hibernate.PalavraChaveDaoHibernate;
 import edu.fae.dao.hibernate.ProdutoDaoHibernate;
 import edu.fae.dao.hibernate.UsuarioDaoHibernate;
@@ -35,6 +37,14 @@ public class DaoFactory {
 	
 	public static PalavraChaveDao getPalavraChaveDao() {
 		return new PalavraChaveDaoHibernate();
+	}
+	
+	public static ItemCarrinhoDao getItemCarrinhoDao() {
+		return new ItemCarrinhoDaoHibernate();
+	}
+	
+	public static CarrinhoCompraDao getCarrinhoCompraDao() {
+		return new CarrinhoCompraDaoHibernate();
 	}
 	
 }
