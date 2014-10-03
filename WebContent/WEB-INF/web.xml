@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:javaee="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" id="WebApp_9" version="2.4">
-  <javaee:display-name>JavaFlex</javaee:display-name>
+<web-app>
+  <display-name>JavaFlex</display-name>
   <context-param>
-    <javaee:param-name>javax.faces.PROJECT_STAGE</javaee:param-name>
-    <javaee:param-value>Development</javaee:param-value>
+    <param-name>javax.faces.PROJECT_STAGE</param-name>
+    <param-value>Development</param-value>
   </context-param>
   <context-param>
-    <javaee:param-name>primefaces.THEME</javaee:param-name>
-    <javaee:param-value>home</javaee:param-value>
+    <param-name>primefaces.THEME</param-name>
+    <param-value>home</param-value>
   </context-param>
   <filter>
     <filter-name>HibernateFilter</filter-name>

@@ -19,6 +19,8 @@ import javax.validation.constraints.Size;
 
 @Entity
 public class Produto implements Model {
+
+	private static final long serialVersionUID = 5969039284795659997L;
 	private Long id;
 	private String nome;
 	private String marca;
@@ -27,6 +29,7 @@ public class Produto implements Model {
 	private String descricao;
 	private Endereco endereco;
 	private Categoria categoria;
+	private double valor;
 	private List<PalavraChave> palavrasChave = new ArrayList<PalavraChave>();
 	
 	@Id
@@ -97,5 +100,11 @@ public class Produto implements Model {
 	}
 	public void setPalavrasChave(List<PalavraChave> palavrasChave) {
 		this.palavrasChave = palavrasChave;
+	}
+	public double getValor() {
+		return valor;
+	}
+	public void setValor(double valor) {
+		this.valor = valor;
 	}
 }
