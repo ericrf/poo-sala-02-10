@@ -17,6 +17,10 @@ public class MainController {
 		return (Usuario) getSession().get("usuarioLogado");
 	}
 	
+	public boolean isRendered(){
+		return (getUsuarioLogado() != null);
+	}
+	
 	/**
 	 * Retorna um map que representa as variáveis guardadas
 	 * a sessão
