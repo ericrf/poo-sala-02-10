@@ -30,7 +30,7 @@ public class LoginFilter implements Filter {
 			Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
 			if(usuario==null) {
 				//Não processa a página e faz o redirect para o login.jsf
-				((HttpServletResponse) response).sendRedirect("login.jsf");	
+				((HttpServletResponse) response).sendRedirect("/crud/login.jsf");	
 			}else{
 				//Faz o processamento da página
 				chain.doFilter(request, response);
@@ -53,6 +53,8 @@ public class LoginFilter implements Filter {
 			contextPath = contextPath + "/";
 			
 		}
+		if(paginaAcessada.contains("admin")) return true;
+		
 		
 		if(paginaAcessada.startsWith(contextPath+"javax.faces.resource/")) {
 			//Nao Precisa de login
@@ -63,6 +65,9 @@ public class LoginFilter implements Filter {
 			//Nao Precisa de login
 			return false;
 		}
+		
+		
+		
 		
 		//Precisa de login
 		return true;
