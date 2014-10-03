@@ -1,5 +1,7 @@
 package edu.fae.controllers;
 
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -16,5 +18,8 @@ public class UsuarioListaController extends AbstractListaController<Usuario, Usu
 		return DaoFactory.getUsuarioDao();
 	}
 
+	public List<Usuario> getUsuarios(){
+		return super.getModels();
+	}
 	
 }
