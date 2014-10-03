@@ -21,15 +21,19 @@
 					#{produto.nome}  
 			    </p:column>
 				<p:column>
-					<f:facet name="header">Marca</f:facet>
-					#{produto.marca}  
+					<f:facet name="header">Valor</f:facet>
+					#{produto.valor}  
 			    </p:column>
 				<p:column>
-					<f:facet name="header">Categoria</f:facet>
-					#{produto.categoria.nome}  
+					<f:facet name="header">Descricao</f:facet>
+					#{produtoFormController.produto.descricao} 
 			    </p:column>			    
 				<p:column style="width: 80px;">
-					<f:facet name="header">Ações</f:facet>
+					<f:facet name="header">Acoes</f:facet>
+					<p:button outcome="produtoFormulario.xhtml" icon="ui-icon-pencil" title="Editar Produto">
+						<f:param name="id" value="#{produto.id}" />
+					</p:button>
+					<p:spacer width="10" />
 					<p:button outcome="produtoFormulario.xhtml" icon="ui-icon-pencil" title="Editar Produto">
 						<f:param name="id" value="#{produto.id}" />
 					</p:button>

@@ -41,7 +41,7 @@ public class Produto implements Model {
 		this.id = id;
 	}
 	
-	@Size(min = 2, max = 14)
+	@Size(min = 2, max = 150)
 	public String getNome() {
 		return nome;
 	}
