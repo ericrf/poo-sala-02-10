@@ -22,6 +22,7 @@ public class Produto implements Model {
 
 	private static final long serialVersionUID = 5969039284795659997L;
 	private Long id;
+	
 	private String nome;
 	private String marca;
 	private String cor;
