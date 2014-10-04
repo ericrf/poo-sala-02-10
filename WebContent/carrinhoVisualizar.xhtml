@@ -1,0 +1,17 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title><ui:insert name="titulo">FAE</ui:insert></title>
+	<link type="text/css" rel="stylesheet" href="/crud/styles/default.css" />
+</h:head>
+<h:body>
+	<h1>Carrinho</h1>
+
+	<h:outputText value="#{carrinhoCompraController.valorTotal}" />
+</h:body>
+</html>
