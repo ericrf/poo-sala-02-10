@@ -20,6 +20,13 @@ public class ItemCarrinho implements Model {
 	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
 	private Produto produto;
 	
+	public ItemCarrinho(){}
+	public ItemCarrinho(Produto produto, int quantidade){
+		this.produto = produto;
+		this.quantidade = quantidade;
+		
+	}
+	
 	public double getValorTotal() {
 		return getQuantidade() * produto.getValor();
 	}

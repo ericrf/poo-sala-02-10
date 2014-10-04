@@ -24,7 +24,14 @@
 			<h:outputLabel value="#{produtoFormController.produto.descricao}" />
 
 		</h:panelGrid>
-
+		<p:commandButton
+			onclick="return confirm('Tem certeza que deseja adicionar ao carrinho?')"
+			icon="ui-icon-cart" title="add carrinho" ajax="true" update="@form"
+			action="#{carrinhoCompraController.put}">
+			<f:setPropertyActionListener
+				target="#{carrinhoCompraController.produto}"
+				value="#{produtoFormController.produto}" />
+		</p:commandButton>
 	</h:form>
 </h:body>
 </html>
