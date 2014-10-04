@@ -1,1 +1,3 @@
-olaMundo
+<%
+response.sendRedirect("produto.jsf");
+%>

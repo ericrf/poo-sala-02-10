@@ -26,7 +26,10 @@
 			    </p:column>
 			<p:column style="width: 80px;">
 				<f:facet name="header">Acoes</f:facet>
-				//TODO: add botao para visualizar produto
+				<p:button outcome="produtoVisualizar.xhtml" icon="ui-icon-circle-zoomin"
+					title="Visualizar Produto">
+					<f:param name="id" value="#{produto.id}" />
+				</p:button>
 			</p:column>
 		</p:dataTable>
 	</h:form>

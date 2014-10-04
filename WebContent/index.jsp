@@ -1,3 +1,3 @@
 <%
-response.sendRedirect("admin/");
+response.sendRedirect("produto.jsf");
 %>
