@@ -1,13 +1,19 @@
 package edu.fae.controllers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
+import org.primefaces.event.RowEditEvent;
 
 import edu.fae.model.ItemCarrinho;
 import edu.fae.model.Produto;
@@ -51,6 +57,11 @@ public class CarrinhoCompraController {
 	public Map<Long, ItemCarrinho> getItens() {
 		return itens;
 	}
+	
+	public List<Entry<Long, ItemCarrinho>> getListItemCarrinho(){
+		return new ArrayList<Entry<Long, ItemCarrinho>>(itens.entrySet());
+	}
+	
 	public void setItens(Map<Long, ItemCarrinho> itens) {
 		this.itens = itens;
 	}
@@ -62,4 +73,14 @@ public class CarrinhoCompraController {
 	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
+
+	public void onRowEdit(RowEditEvent event) {
+        FacesMessage msg = new FacesMessage("Quantidade Editada", ((Produto) event.getObject()).getId().toString());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+     
+    public void onRowCancel(RowEditEvent event) {
+        FacesMessage msg = new FacesMessage("Modificação Cancelada", ((Produto) event.getObject()).getId().toString());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
 }

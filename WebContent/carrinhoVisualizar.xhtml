@@ -12,6 +12,34 @@
 <h:body>
 	<h1>Carrinho</h1>
 
+	<h:outputText value="Valor Total da Compra: " />
 	<h:outputText value="#{carrinhoCompraController.valorTotal}" />
+
+
+	<h:form>
+		<p:growl id="msgs" showDetail="true" />
+
+		<p:dataTable id="carrinhoItem" var="produto"
+			value="#{carrinhoCompraController.listItemCarrinho}" editable="true"
+			style="margin-bottom:20px">
+			<f:facet name="header">Itens do Carrinho</f:facet>
+
+			<p:column headerText="id">
+				<h:outputText value="#{produto.key}" />
+			</p:column>
+			
+			<p:column headerText="nome">
+				<h:outputText value="#{produto.value.produto.nome}" />
+			</p:column>
+			
+			<p:column headerText="quandidade">
+				<h:outputText value="#{produto.value.quantidade}" />
+			</p:column>
+			<p:column headerText="valor total">
+				<h:outputText value="#{produto.value.valorTotal}" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
+
 </h:body>
 </html>
