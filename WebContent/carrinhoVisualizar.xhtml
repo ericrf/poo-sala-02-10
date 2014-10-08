@@ -35,8 +35,18 @@
 			<p:column headerText="quandidade">
 				<h:outputText value="#{produto.value.quantidade}" />
 			</p:column>
+			
+			<p:column headerText="valor unitario">
+				<h:outputText value="#{produto.value.produto.valor}" />
+			</p:column>
+			
 			<p:column headerText="valor total">
 				<h:outputText value="#{produto.value.valorTotal}" />
+			</p:column>
+			
+			<p:column headerText="Acoes">
+				//TODO: adicionar botoes de adicionar/remover item <br />
+				//TODO: criar acao para editar quantidade de de produtos no item.
 			</p:column>
 		</p:dataTable>
 	</h:form>
