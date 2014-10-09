@@ -14,12 +14,14 @@
 <h:body>
 
 	<p:layout fullPage="true">
-
-		<p:layoutUnit position="north">
-			<p:menubar>
-				<p:menuitem url="produto.jsf" value="Produtos" />
-				<p:menuitem url="carrinhoVisualizar.jsf" value="Carrinho" />
-			</p:menubar>
+		<p:layoutUnit position="north" size="55">
+			<h:form>
+				<p:menubar>
+					<p:menuitem url="produto.jsf" value="Produtos" />
+					<p:menuitem url="carrinhoVisualizar.jsf" value="Carrinho" />
+					<p:menuitem url="admin/login.jsf" value="Login" />
+				</p:menubar>
+			</h:form>
 		</p:layoutUnit>
 
 		<p:layoutUnit position="center">

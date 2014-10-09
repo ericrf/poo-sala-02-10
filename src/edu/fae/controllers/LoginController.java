@@ -36,7 +36,7 @@ public class LoginController {
 	
 	public String sair() {
 		getSession().remove("usuarioLogado");
-		return "login.xhtml?faces-redirect=true";
+		return "admin/login.xhtml?faces-redirect=true";
 	}
 	
 	
