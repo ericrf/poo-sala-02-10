@@ -1,37 +1,33 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="includes/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
-<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title><ui:insert name="titulo">FAE</ui:insert></title>
-	<link type="text/css" rel="stylesheet" href="/crud/styles/default.css" />
-</h:head>
-<h:body>
-	<h1>Produto</h1>
-	<p:button outcome="carrinhoVisualizar.xhtml"/>
-	<h:form>
-		<h:panelGrid columns="2" style="margin-bottom:10px">
-			<h:outputLabel value="Nome: " />
-			<h:outputLabel value="#{produtoFormController.produto.nome}" />
 
-			<h:outputLabel value="Valor: " />
-			<h:outputLabel value="#{produtoFormController.produto.valor}" />
+	<ui:define name="corpo">
+		<h1>Produto</h1>
+		<h:form>
+			<h:panelGrid columns="2" style="margin-bottom:10px">
+				<h:outputLabel value="Nome: " />
+				<h:outputLabel value="#{produtoFormController.produto.nome}" />
 
-			<h:outputLabel value="Descricao: " />
-			<h:outputLabel value="#{produtoFormController.produto.descricao}" />
+				<h:outputLabel value="Valor: " />
+				<h:outputLabel value="#{produtoFormController.produto.valor}" />
 
-		</h:panelGrid>
-		<p:commandButton
-			onclick="return confirm('Tem certeza que deseja adicionar ao carrinho?')"
-			icon="ui-icon-cart" title="add carrinho" ajax="true" update="@form"
-			action="#{carrinhoCompraController.put}">
-			<f:setPropertyActionListener
-				target="#{carrinhoCompraController.produto}"
-				value="#{produtoFormController.produto}" />
-		</p:commandButton>
-	</h:form>
-</h:body>
-</html>
+				<h:outputLabel value="Descricao: " />
+				<h:outputLabel value="#{produtoFormController.produto.descricao}" />
+
+			</h:panelGrid>
+			<p:commandButton
+				onclick="return confirm('Tem certeza que deseja adicionar ao carrinho?')"
+				icon="ui-icon-cart" title="add carrinho" ajax="true" update="@form"
+				action="#{carrinhoCompraController.put}">
+				<f:setPropertyActionListener
+					target="#{carrinhoCompraController.produto}"
+					value="#{produtoFormController.produto}" />
+			</p:commandButton>
+		</h:form>
+	</ui:define>
+</ui:composition>

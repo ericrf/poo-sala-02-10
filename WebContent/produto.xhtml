@@ -1,38 +1,33 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition template="includes/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
-<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title><ui:insert name="titulo">FAE</ui:insert></title>
-	<link type="text/css" rel="stylesheet" href="/crud/styles/default.css" />
-</h:head>
-<h:body>
 
-	<h1>Pagina de Produtos!</h1>
-	<p:button outcome="carrinhoVisualizar.xhtml"/>
-	<h:form id="frmTabela">
-		<p:dataTable id="tabela" value="#{produtoListaController.produtos}"
-			var="produto">
-			<p:column>
-				<f:facet name="header">Nome</f:facet>
+	<ui:define name="corpo">
+		<h1>Pagina de Produtos!</h1>
+		<h:form id="frmTabela">
+			<p:dataTable id="tabela" value="#{produtoListaController.produtos}"
+				var="produto">
+				<p:column>
+					<f:facet name="header">Nome</f:facet>
 					#{produto.nome}  
 			    </p:column>
-			<p:column>
-				<f:facet name="header">Valor</f:facet>
+				<p:column>
+					<f:facet name="header">Valor</f:facet>
 					#{produto.valor}  
 			    </p:column>
-			<p:column style="width: 80px;">
-				<f:facet name="header">Acoes</f:facet>
-				<p:button outcome="produtoVisualizar.xhtml" icon="ui-icon-circle-zoomin"
-					title="Visualizar Produto">
-					<f:param name="id" value="#{produto.id}" />
-				</p:button>
-			</p:column>
-		</p:dataTable>
-	</h:form>
+				<p:column style="width: 80px;">
+					<f:facet name="header">Acoes</f:facet>
+					<p:button outcome="produtoVisualizar.xhtml"
+						icon="ui-icon-circle-zoomin" title="Visualizar Produto">
+						<f:param name="id" value="#{produto.id}" />
+					</p:button>
+				</p:column>
+			</p:dataTable>
+		</h:form>
 
-</h:body>
-</html>
+	</ui:define>
+</ui:composition>
