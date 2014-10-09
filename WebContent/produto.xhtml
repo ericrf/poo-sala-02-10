@@ -25,6 +25,15 @@
 						icon="ui-icon-circle-zoomin" title="Visualizar Produto">
 						<f:param name="id" value="#{produto.id}" />
 					</p:button>
+
+					<p:commandButton
+						onclick="return confirm('Tem certeza que deseja adicionar ao carrinho?')"
+						icon="ui-icon-cart" title="add carrinho" ajax="true"
+						update="@form" action="#{carrinhoCompraController.put}">
+						<f:setPropertyActionListener
+							target="#{carrinhoCompraController.produto}"
+							value="#{produto}" />
+					</p:commandButton>
 				</p:column>
 			</p:dataTable>
 		</h:form>
