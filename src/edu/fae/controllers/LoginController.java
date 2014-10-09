@@ -30,7 +30,7 @@ public class LoginController {
 			
 			getSession().put("usuarioLogado", user);
 						
-			return "main.xhtml?faces-redirect=true";
+			return "../main.xhtml?faces-redirect=true";
 		}
 	}
 	
