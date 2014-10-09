@@ -12,11 +12,11 @@
 <h:body>
 	<h1>Carrinho</h1>
 
-	<h:outputText value="Valor Total da Compra: " />
-	<h:outputText value="#{carrinhoCompraController.valorTotal}" />
 
 
 	<h:form>
+		<h:outputText value="Valor Total da Compra: " />
+		<h:outputText value="#{carrinhoCompraController.valorTotal}" />
 		<p:growl id="msgs" showDetail="true" />
 
 		<p:dataTable id="carrinhoItem" var="produto"
@@ -27,26 +27,44 @@
 			<p:column headerText="id">
 				<h:outputText value="#{produto.key}" />
 			</p:column>
-			
+
 			<p:column headerText="nome">
 				<h:outputText value="#{produto.value.produto.nome}" />
 			</p:column>
-			
+
 			<p:column headerText="quandidade">
 				<h:outputText value="#{produto.value.quantidade}" />
 			</p:column>
-			
+
 			<p:column headerText="valor unitario">
 				<h:outputText value="#{produto.value.produto.valor}" />
 			</p:column>
-			
+
 			<p:column headerText="valor total">
 				<h:outputText value="#{produto.value.valorTotal}" />
 			</p:column>
-			
+
 			<p:column headerText="Acoes">
-				//TODO: adicionar botoes de adicionar/remover item <br />
-				//TODO: criar acao para editar quantidade de de produtos no item.
+				<p:commandButton icon="ui-icon-plus" title="Inserir mais um Produto"
+					ajax="true" update="@form"
+					action="#{carrinhoCompraController.put}">
+					<f:setPropertyActionListener target="#{carrinhoCompraController.produto.id}"
+						value="#{produto.value.produto.id}" />
+				</p:commandButton>
+				<p:spacer width="10" />
+				<p:commandButton icon="ui-icon-minus" title="Remover um Produto"
+					ajax="true" update="@form"
+					action="#{carrinhoCompraController.remove}">
+					<f:setPropertyActionListener target="#{carrinhoCompraController.produto.id}"
+						value="#{produto.value.produto.id}" />
+				</p:commandButton>
+				<p:spacer width="10" />
+				<p:commandButton icon="ui-icon-trash" title="Remover Item"
+					ajax="true" update="@form"
+					action="#{carrinhoCompraController.removeItem}">
+					<f:setPropertyActionListener target="#{carrinhoCompraController.produto.id}"
+						value="#{produto.value.produto.id}" />
+				</p:commandButton>
 			</p:column>
 		</p:dataTable>
 	</h:form>

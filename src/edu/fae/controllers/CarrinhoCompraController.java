@@ -8,12 +8,8 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-
-import org.primefaces.event.RowEditEvent;
 
 import edu.fae.model.ItemCarrinho;
 import edu.fae.model.Produto;
@@ -35,6 +31,7 @@ public class CarrinhoCompraController {
 		if(item == null) item = new ItemCarrinho(getProduto(), 0);
 		item.setQuantidade((item.getQuantidade() + 1));
 		itens.put(getProduto().getId(), item);
+		produto = new Produto();
 	}
 	
 	public void remove(){
@@ -42,6 +39,12 @@ public class CarrinhoCompraController {
 		if(item == null) return;
 		item.setQuantidade((item.getQuantidade() - 1));
 		if(item.getQuantidade() == 0) itens.remove(getProduto().getId());
+		produto = new Produto();
+	}
+	
+	public void removeItem(){
+		itens.remove(getProduto().getId());
+		produto = new Produto();
 	}
 	
 	public double getValorTotal(){
@@ -73,14 +76,4 @@ public class CarrinhoCompraController {
 	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
-
-	public void onRowEdit(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Quantidade Editada", ((Produto) event.getObject()).getId().toString());
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-     
-    public void onRowCancel(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Modificação Cancelada", ((Produto) event.getObject()).getId().toString());
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
 }

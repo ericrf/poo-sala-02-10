@@ -1,5 +1,6 @@
 package edu.fae.controllers;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -12,7 +13,9 @@ import edu.fae.model.Produto;
 
 @ViewScoped
 @ManagedBean(name="produtoListaController")
-public class ProdutoListaController {
+public class ProdutoListaController implements Serializable{
+	private static final long serialVersionUID = 5341571907001850897L;
+
 	private ProdutoDao produtoDao = DaoFactory.getProdutoDao();
 	/**
 	 * Armazena os produtos mostrados na view
