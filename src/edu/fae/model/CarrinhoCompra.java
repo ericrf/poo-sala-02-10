@@ -1,49 +1,48 @@
 package edu.fae.model;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-public class CarrinhoCompra implements Model{
-	private static final long serialVersionUID = 3780198785804886280L;
+public class CarrinhoCompra {
+	private Map<Long, ItemCarrinho> itens;
 	
-	@Id
-	@GeneratedValue
-	private Long id;
-	
-	@OneToMany(cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
-	private List<ItemCarrinho> itens;
+	public CarrinhoCompra() {
+		itens = new HashMap<Long, ItemCarrinho>();
+	}
 	
 	public double getValorTotal(){
 		double valorTotal = 0.0;
-		for (ItemCarrinho item : itens) 
+		Set<Entry<Long,ItemCarrinho>> set = itens.entrySet();
+		for (Entry<Long, ItemCarrinho> entry : set) {
+			ItemCarrinho item = entry.getValue();
 			valorTotal+=item.getValorTotal();
+		}
 		return valorTotal;
 	}
 	
 	public void adicionarProduto(Produto produto){
-		ItemCarrinho itemCarrinho = new ItemCarrinho();
-		itemCarrinho.setProduto(produto);
-		itens.add(itemCarrinho);
+		ItemCarrinho item = itens.get(produto.getId());
+		if(item == null) item = new ItemCarrinho(produto, 0);
+		item.setQuantidade((item.getQuantidade() + 1));
+		itens.put(produto.getId(), item);
+	}
+	
+	public void removerProduto(Produto produto){
+		ItemCarrinho item = itens.get(produto.getId());
+		if(item == null) return;
+		item.setQuantidade((item.getQuantidade() - 1));
+		if(item.getQuantidade() == 0) itens.remove(produto.getId());
+		
+	}
+	
+	public void removerItem(Long id){
+		itens.remove(id);
 	}
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public List<ItemCarrinho> getItens() {
+	public Map<Long, ItemCarrinho> getItens() {
 		return itens;
 	}
 
-	public void setItens(List<ItemCarrinho> itens) {
-		this.itens = itens;
-	}
 }

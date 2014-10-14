@@ -1,16 +1,15 @@
 package edu.fae.controllers;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import edu.fae.model.CarrinhoCompra;
 import edu.fae.model.ItemCarrinho;
 import edu.fae.model.Produto;
 
@@ -18,55 +17,39 @@ import edu.fae.model.Produto;
 @ManagedBean
 public class CarrinhoCompraController {
 
-	private Map<Long, ItemCarrinho> itens;
+	private CarrinhoCompra carrinho;
 	private Produto produto;
 	
 	@PostConstruct
 	private void init() {
-		setItens(new HashMap<Long, ItemCarrinho>());
+		carrinho = new CarrinhoCompra();
 	}
 	
 	public void put(){
-		ItemCarrinho item = itens.get(getProduto().getId());
-		if(item == null) item = new ItemCarrinho(getProduto(), 0);
-		item.setQuantidade((item.getQuantidade() + 1));
-		itens.put(getProduto().getId(), item);
+		carrinho.adicionarProduto(produto);
 		produto = new Produto();
 	}
 	
 	public void remove(){
-		ItemCarrinho item = itens.get(getProduto().getId());
-		if(item == null) return;
-		item.setQuantidade((item.getQuantidade() - 1));
-		if(item.getQuantidade() == 0) itens.remove(getProduto().getId());
+		carrinho.removerProduto(produto);
 		produto = new Produto();
 	}
 	
 	public void removeItem(){
-		itens.remove(getProduto().getId());
+		carrinho.removerItem(produto.getId());
 		produto = new Produto();
 	}
 	
 	public double getValorTotal(){
-		double valorTotal = 0.0;
-		Set<Entry<Long,ItemCarrinho>> set = itens.entrySet();
-		for (Entry<Long, ItemCarrinho> entry : set) {
-			ItemCarrinho item = entry.getValue();
-			valorTotal+=item.getValorTotal();
-		}
-		return valorTotal;
+		return carrinho.getValorTotal();
 	}
 	
 	public Map<Long, ItemCarrinho> getItens() {
-		return itens;
+		return carrinho.getItens();
 	}
 	
 	public List<Entry<Long, ItemCarrinho>> getListItemCarrinho(){
-		return new ArrayList<Entry<Long, ItemCarrinho>>(itens.entrySet());
-	}
-	
-	public void setItens(Map<Long, ItemCarrinho> itens) {
-		this.itens = itens;
+		return new ArrayList<Entry<Long, ItemCarrinho>>(carrinho.getItens().entrySet());
 	}
 
 	public Produto getProduto() {

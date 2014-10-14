@@ -4,10 +4,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
-import edu.fae.dao.CategoriaDao;
 import edu.fae.dao.Dao;
-import edu.fae.dao.DaoFactory;
-import edu.fae.model.Categoria;
 import edu.fae.model.Model;
 
 public abstract class AbstractListaController<MODEL extends Model, DAO extends Dao<MODEL>> {
