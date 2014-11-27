@@ -12,10 +12,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.Cascade;
 
 @Entity
 public class Produto implements Model {
@@ -32,6 +35,10 @@ public class Produto implements Model {
 	private Categoria categoria;
 	private double valor;
 	private List<PalavraChave> palavrasChave = new ArrayList<PalavraChave>();
+	private List<Imagem> imagens = new ArrayList<Imagem>();
+	private String imagemChamada;
+	
+	
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -50,6 +57,14 @@ public class Produto implements Model {
 		this.nome = nome;
 	}
 	
+	
+	
+	public String getImagemChamada() {
+		return imagemChamada;
+	}
+	public void setImagemChamada(String imagemChamada) {
+		this.imagemChamada = imagemChamada;
+	}
 	@Size(min = 2, max = 14, message="A marca deve ter entre 2 e 14 carateres")
 	public String getMarca() {
 		return marca;
@@ -108,4 +123,15 @@ public class Produto implements Model {
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
+	
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
+	public List<Imagem> getImagens() {
+		return imagens;
+	}
+
+	public void setImagens(List<Imagem> imagens) {
+		this.imagens = imagens;
+	}
+	
 }

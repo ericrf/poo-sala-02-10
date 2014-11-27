@@ -29,6 +29,10 @@
 					<f:facet name="header">Descricao</f:facet>
 					#{produtoFormController.produto.descricao} 
 			    </p:column>
+			    <p:column>
+					<f:facet name="header">Categoria</f:facet>
+					#{produto.categoria.nome} 
+			    </p:column>
 				<p:column style="width: 80px;">
 					<f:facet name="header">Acoes</f:facet>
 					<p:button outcome="../produtoVisualizar.xhtml"

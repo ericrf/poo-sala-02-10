@@ -29,6 +29,52 @@
 						value="#{produtoFormController.produto.descricao}" rows="5"
 						cols="60" />
 
+					<h:outputLabel for="categoria" value="Categoria:" />
+					<p:selectOneMenu id="categoria"
+						value="#{produtoFormController.produto.categoria}"
+						converter="modelConverter">
+						<f:selectItem itemLabel="Selecione" itemValue="" />
+						<f:selectItems value="#{produtoFormController.categorias}"
+							var="categoria" itemLabel="#{categoria.nome}"
+							itemValue="#{categoria}" />
+					</p:selectOneMenu>
+
+
+					<h:outputLabel for="imagemChamada" value="Imagem da Chamada: *" />
+					<p:outputPanel>
+
+						<p:graphicImage
+							value="imagens/${produtoFormController.produto.imagemChamada}"
+							width="100px"
+							rendered="#{produtoFormController.produto.imagemChamada != null}" />
+
+						<p:fileUpload id="imagemChamada"
+							value="#{produtoFormController.fileImagemChamada}" mode="simple" />
+
+					</p:outputPanel>
+					
+					
+					
+					<p:fileUpload fileUploadListener="#{conteudoFormController.uploadGaleria}"  
+						            mode="advanced"  
+						            update="tblGaleria"   
+						            multiple="true"
+									/>
+									
+		  				<p:dataTable id="tblGaleria" value="#{produtoFormController.produto.imagens}" 
+		  						style="width: 500px" var="imagem" editable="true">
+							<p:column headerText="Imagem" style="width:200px">
+								<p:graphicImage value="imagens/#{imagem.arquivo}" title="#{imagem.legenda}" height="100px"/>    
+						    </p:column>
+					        <p:column headerText="Legenda">  
+					        	<p:inputText value="#{imagem.legenda}" style="width:200px"/>
+					        </p:column> 
+	  					</p:dataTable>
+	  														
+					
+					
+
+
 				</h:panelGrid>
 
 				<p:commandButton action="#{produtoFormController.salvar}"
